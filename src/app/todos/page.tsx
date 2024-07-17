@@ -18,6 +18,7 @@ export default function Todos() {
     if (!addTodoFieldValue) return;
 
     setTodos((prev) => [...prev, addTodoFieldValue]);
+    setAddTodoFieldValue("");
   };
 
   return (
