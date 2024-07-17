@@ -15,6 +15,8 @@ export default function Todos() {
   const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (!addTodoFieldValue) return;
+
     setTodos((prev) => [...prev, addTodoFieldValue]);
   };
 
@@ -44,7 +46,7 @@ export default function Todos() {
           </p>
         )}
 
-        <ul>
+        <ul data-testid="todo-list">
           {todos.map((item) => (
             <li
               key={item}
