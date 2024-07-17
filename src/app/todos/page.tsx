@@ -21,6 +21,12 @@ export default function Todos() {
     setAddTodoFieldValue("");
   };
 
+  const onDeleteHandler = (todoItem: string) => {
+    setTodos((previousState) =>
+      previousState.filter((item) => item !== todoItem)
+    );
+  };
+
   return (
     <div className="max-w-screen-sm mx-auto p-4 flex flex-col gap-4">
       <h4 className="text-xl font-semibold">Todo list</h4>
@@ -48,14 +54,17 @@ export default function Todos() {
         )}
 
         <ul data-testid="todo-list">
-          {todos.map((item) => (
+          {todos.map((todo) => (
             <li
-              key={item}
+              key={todo}
               className="flex items-center justify-between gap-4 py-3 [&:not(:first-child)]:border-t border-gray-700"
             >
-              <span>{item}</span>
+              <span>{todo}</span>
 
-              <button className="text-sm font-bold leading-6 uppercase border-0 py-1.5 px-2 bg-gray-400 rounded-md text-gray-900 hover:bg-gray-300 transition-colors ease-in-out duration-300">
+              <button
+                className="text-sm font-bold leading-6 uppercase border-0 py-1.5 px-2 bg-gray-400 rounded-md text-gray-900 hover:bg-gray-300 transition-colors ease-in-out duration-300"
+                onClick={() => onDeleteHandler(todo)}
+              >
                 Delete ❌
               </button>
             </li>
