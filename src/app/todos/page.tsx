@@ -15,7 +15,7 @@ export default function Todos() {
   const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!addTodoFieldValue) return;
+    if (!addTodoFieldValue || todos.includes(addTodoFieldValue)) return;
 
     setTodos((prev) => [...prev, addTodoFieldValue]);
     setAddTodoFieldValue("");
