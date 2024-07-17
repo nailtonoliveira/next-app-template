@@ -44,3 +44,20 @@ test("TodoPage should not add empty todo items on the list", async () => {
 
   expect(screen.getByTestId("todo-list").childElementCount).toBe(0);
 });
+
+test("TodoPage should clear field after add a todo item on the list", async () => {
+  render(<TodoPage />);
+
+  act(() => {
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "Todo item" },
+    });
+  });
+
+  act(() => {
+    fireEvent.click(screen.getByRole("button", { name: /add/i }));
+  });
+
+  expect(screen.getByText("Todo item")).toBeDefined();
+  expect(screen.getByRole("textbox")).toHaveValue("");
+});
