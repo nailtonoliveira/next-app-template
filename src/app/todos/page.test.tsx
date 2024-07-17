@@ -34,3 +34,13 @@ test("TodoPage should add todo items correctly on the list", async () => {
 
   expect(screen.getByText(addTodoText)).toBeDefined();
 });
+
+test("TodoPage should not add empty todo items on the list", async () => {
+  render(<TodoPage />);
+
+  act(() => {
+    fireEvent.click(screen.getByRole("button", { name: /add/i }));
+  });
+
+  expect(screen.getByTestId("todo-list").childElementCount).toBe(0);
+});
